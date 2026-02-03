@@ -4,4 +4,10 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "einops>=0.8.2",
+    "matplotlib>=3.10.8",
+    "seaborn>=0.13.2",
+    "torchtext==0.6.0",
+    "tqdm>=4.67.2",
+]
