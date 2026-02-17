@@ -1,0 +1,34 @@
+Grid Sweep Results (Sorted by Accuracy)
+========================================
+Acc: 0.7792 | embed_dim: 128 | num_heads: 4 | num_layers: 2 | dropout: 0.1 | lr: 0.0001
+Acc: 0.7766 | embed_dim: 128 | num_heads: 8 | num_layers: 2 | dropout: 0.1 | lr: 0.0001
+Acc: 0.7694 | embed_dim: 128 | num_heads: 8 | num_layers: 4 | dropout: 0.1 | lr: 0.0001
+Acc: 0.7604 | embed_dim: 128 | num_heads: 4 | num_layers: 4 | dropout: 0.1 | lr: 0.0001
+Acc: 0.7580 | embed_dim: 128 | num_heads: 8 | num_layers: 2 | dropout: 0.1 | lr: 5e-05
+Acc: 0.7572 | embed_dim: 128 | num_heads: 4 | num_layers: 2 | dropout: 0.2 | lr: 0.0001
+Acc: 0.7562 | embed_dim: 128 | num_heads: 8 | num_layers: 2 | dropout: 0.2 | lr: 0.0001
+Acc: 0.7550 | embed_dim: 128 | num_heads: 4 | num_layers: 2 | dropout: 0.1 | lr: 5e-05
+Acc: 0.7490 | embed_dim: 128 | num_heads: 8 | num_layers: 4 | dropout: 0.2 | lr: 0.0001
+Acc: 0.7420 | embed_dim: 128 | num_heads: 8 | num_layers: 4 | dropout: 0.1 | lr: 5e-05
+Acc: 0.7323 | embed_dim: 128 | num_heads: 4 | num_layers: 4 | dropout: 0.2 | lr: 0.0001
+Acc: 0.7301 | embed_dim: 128 | num_heads: 4 | num_layers: 4 | dropout: 0.1 | lr: 5e-05
+Acc: 0.7056 | embed_dim: 128 | num_heads: 8 | num_layers: 2 | dropout: 0.2 | lr: 5e-05
+Acc: 0.7051 | embed_dim: 128 | num_heads: 4 | num_layers: 2 | dropout: 0.2 | lr: 5e-05
+Acc: 0.6991 | embed_dim: 64 | num_heads: 4 | num_layers: 2 | dropout: 0.1 | lr: 0.0001
+Acc: 0.6874 | embed_dim: 64 | num_heads: 8 | num_layers: 4 | dropout: 0.1 | lr: 5e-05
+Acc: 0.6858 | embed_dim: 64 | num_heads: 4 | num_layers: 4 | dropout: 0.1 | lr: 0.0001
+Acc: 0.6820 | embed_dim: 64 | num_heads: 8 | num_layers: 2 | dropout: 0.1 | lr: 0.0001
+Acc: 0.6747 | embed_dim: 64 | num_heads: 4 | num_layers: 4 | dropout: 0.1 | lr: 5e-05
+Acc: 0.6680 | embed_dim: 64 | num_heads: 8 | num_layers: 4 | dropout: 0.1 | lr: 0.0001
+Acc: 0.6665 | embed_dim: 64 | num_heads: 8 | num_layers: 2 | dropout: 0.1 | lr: 5e-05
+Acc: 0.6644 | embed_dim: 64 | num_heads: 4 | num_layers: 2 | dropout: 0.1 | lr: 5e-05
+Acc: 0.6603 | embed_dim: 128 | num_heads: 8 | num_layers: 4 | dropout: 0.2 | lr: 5e-05
+Acc: 0.6530 | embed_dim: 64 | num_heads: 4 | num_layers: 4 | dropout: 0.2 | lr: 0.0001
+Acc: 0.6346 | embed_dim: 64 | num_heads: 8 | num_layers: 4 | dropout: 0.2 | lr: 0.0001
+Acc: 0.6291 | embed_dim: 128 | num_heads: 4 | num_layers: 4 | dropout: 0.2 | lr: 5e-05
+Acc: 0.6285 | embed_dim: 64 | num_heads: 4 | num_layers: 2 | dropout: 0.2 | lr: 0.0001
+Acc: 0.6259 | embed_dim: 64 | num_heads: 4 | num_layers: 2 | dropout: 0.2 | lr: 5e-05
+Acc: 0.6256 | embed_dim: 64 | num_heads: 8 | num_layers: 2 | dropout: 0.2 | lr: 5e-05
+Acc: 0.6211 | embed_dim: 64 | num_heads: 8 | num_layers: 2 | dropout: 0.2 | lr: 0.0001
+Acc: 0.5000 | embed_dim: 64 | num_heads: 4 | num_layers: 4 | dropout: 0.2 | lr: 5e-05
+Acc: 0.5000 | embed_dim: 64 | num_heads: 8 | num_layers: 4 | dropout: 0.2 | lr: 5e-05
