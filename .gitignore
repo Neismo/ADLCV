@@ -3,3 +3,4 @@ data/
 requirements.txt
 __pycache__/
 .venv/
+adlcv-ex-3/checkpoints/
