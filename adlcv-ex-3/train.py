@@ -29,7 +29,7 @@ WARMUP_STEPS = 625
 WEIGHT_DECAY = 1e-4
 GRADIENT_CLIPPING = 1.0
 DATASET_NAME = "monurcan/andersen_fairy_tales"
-MODEL_SAVE_PATH = "checkpoints"
+MODEL_SAVE_PATH = "adlcv-ex-3/checkpoints"
 
 
 # -----------------------
