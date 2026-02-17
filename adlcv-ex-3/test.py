@@ -28,30 +28,31 @@ def generate_text(model, tokenizer, prompt, max_gen_len=500, device="cpu"):
         ...
 
         # Forward pass: get logits for all tokens in the sequence.
-        logits = ...
+        logits = model(input_ids)
         
         # Get the logits for the last token only: shape [batch_size, vocab_size]
-        next_token_logits = ...
+        next_token_logits = logits[:, -1, :]
 
         # You will implement two strategies for generating the next token:
-        strategy = "greedy"
+        strategy = "sampling"
         if strategy == "greedy":
             # Greedy: choose the token with highest probability.
-            next_token_id = ...
+            next_token_id = torch.argmax(next_token_logits)
         elif strategy == "sampling":
             # Multinomial Sampling: Sample from the probability distribution.
             # The temperature parameter controls the randomness of the sampling.
             temperature = 0.8
-            probabilities = ... # softmax with temperature
-            next_token_id = ... # multinomial sampling
+            probabilities = torch.softmax(next_token_logits/temperature, dim=-1) # softmax with temperature
+            next_token_id = torch.multinomial(probabilities, num_samples=1)
 
         # Append predicted token to input_ids. Concatenate
-        input_ids = ...
+        input_ids = torch.concat((input_ids, next_token_id.view(-1, 1)), dim=-1)
 
         # Stop early if the model generates the EOS token.
         # Check if next_token_id == tokenizer.eos_token_id
         # If next_token is end of sentence token, it should stop
-        ...
+        if next_token_id == tokenizer.eos_token_id:
+            break
         ################################################################################################
 
     # Decode the full sequence to text.
