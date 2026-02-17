@@ -7,7 +7,11 @@ requires-python = ">=3.12"
 dependencies = [
     "einops>=0.8.2",
     "matplotlib>=3.10.8",
+    "opencv-python>=4.13.0.92",
+    "pyqt6>=6.10.2",
     "seaborn>=0.13.2",
+    "torch>=2.10.0",
     "torchtext==0.6.0",
+    "torchvision>=0.25.0",
     "tqdm>=4.67.2",
 ]
