@@ -58,7 +58,7 @@ class MaskedAttention(nn.Module):
         attention_logits = attention_logits.masked_fill(mask, float('-inf'))
 
         # Compute attention probabilities and weighted values
-        attention = F.softmax(attention_logits, dim=1)
+        attention = F.softmax(attention_logits, dim=-1)
         out = attention @ values
         ###################################################################################
 

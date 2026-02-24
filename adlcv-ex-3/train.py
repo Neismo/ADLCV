@@ -165,7 +165,7 @@ def main(
     model = model.to(device)
 
     if START_FROM_PRETRAINED_GPT2_CHECKPOINT:
-        model.load_state_dict(torch.load("gpt2_pretrained.pt"))
+        model.load_state_dict(torch.load("adlcv-ex-3/checkpoints/gpt2_pretrained.pt"))
 
     # Define the loss function for language modeling.
     # We ignore the padding token (which is now set to eos_token if needed)
