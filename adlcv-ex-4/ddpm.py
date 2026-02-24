@@ -85,9 +85,70 @@ class Diffusion:
 
         x_t_prev = mean + std * noise # Calculate x_{t-1}, see line 4 of the Algorithm 2 (Sampling) at page 4 of the ddpm paper.
         return x_t_prev
+    
+
+    def p_sample_ddim(self, model, x_t, t, prev_t):
+        """
+        Sample from p(x{t-1} | x_t) using the reverse process and model in a DDIM way
+        """
+
+        alpha_bar = self.alphas_bar[t][:, None, None, None]
+        alpha_prev_bar = torch.where(
+            prev_t.view(-1, 1, 1, 1) >= 0, 
+            self.alphas_bar[prev_t.clamp(min=0)][:, None, None, None], 
+            torch.ones_like(alpha_bar)
+        )
+        predicted_noise = model(x_t, t)
+
+        pred_x0 = (x_t - torch.sqrt(1-alpha_bar)*predicted_noise)/torch.sqrt(alpha_bar)
+
+        x_t_dir = torch.sqrt(1 - alpha_prev_bar) * predicted_noise
+
+        return torch.sqrt(alpha_prev_bar) * pred_x0 + x_t_dir
+
+    def _postprocess_img(self, x):
+        """Helper to scale and clamp images"""
+        x = (x.clamp(-1, 1) + 1) / 2
+        return (x * 255).type(torch.uint8)
 
 
-    def p_sample_loop(self, model, batch_size, timesteps_to_save=None):
+    def p_sample_loop_(self, model, batch_size, timesteps_to_save=None, ddim: bool = False, ddim_steps=50):
+        logging.info(f"Sampling {batch_size} new images using {'DDIM' if ddim else 'DDPM'}....")
+        model.eval()
+        intermediates = [] if timesteps_to_save is not None else None
+        
+        with torch.no_grad():
+            x = torch.randn((batch_size, 3, self.img_size, self.img_size)).to(self.device)
+            
+            if ddim:
+                # FIX: Use linspace to get steps, but ensure we start at T-1
+                times = torch.linspace(self.T - 1, 0, ddim_steps).long().to(self.device)
+                # Create the sequence of 'previous' steps
+                times_next = torch.cat([times[1:], torch.tensor([-1]).to(self.device)])
+                
+                for i in tqdm(range(len(times)), desc="DDIM Sampling"):
+                    t = torch.full((batch_size,), times[i], device=self.device, dtype=torch.long)
+                    prev_t = torch.full((batch_size,), times_next[i], device=self.device, dtype=torch.long)
+                    
+                    x = self.p_sample_ddim(model, x, t, prev_t)
+                    
+                    if intermediates is not None and times[i].item() in timesteps_to_save:
+                        intermediates.append(self._postprocess_img(x))
+            else:
+                # Standard DDPM loop
+                for i in tqdm(reversed(range(1, self.T)), total=self.T-1, desc="DDPM Sampling"):
+                    t = (torch.ones(batch_size) * i).long().to(self.device)
+                    x = self.p_sample(model, x, t)
+                    
+                    if intermediates is not None and i in timesteps_to_save:
+                        intermediates.append(self._postprocess_img(x))
+
+        model.train()
+        x = self._postprocess_img(x)
+        return (x, intermediates) if intermediates is not None else x
+
+
+    def p_sample_loop(self, model, batch_size, timesteps_to_save=None, ddim: bool = False):
         """
         Implements algrorithm 2 (Sampling) from the ddpm paper at page 4
         """

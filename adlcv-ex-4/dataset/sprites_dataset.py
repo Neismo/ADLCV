@@ -9,7 +9,7 @@ from .helpers import set_seed
 class SpritesDataset(Dataset):
     def __init__(self, 
                  transform, 
-                 img_file='./data/sprites.npy',
+                 img_file='.data/sprites.npy',
                  num_samples=40000,
                  seed=1
     ):

@@ -57,7 +57,7 @@ def test_positional_encoding(embed_dim=128, max_seq_len=512):
     
 if __name__ == '__main__':
     set_seed(5)
-    train_iter, _ = prepare_data_iter(batch_size=2)
+    train_iter, _, _ = prepare_data_iter(batch_size=2)
     batch = next(iter(train_iter))
     for i in range(2):
         example = batch.dataset.examples[i]

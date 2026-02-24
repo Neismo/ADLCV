@@ -93,7 +93,7 @@ def train(device='cpu', T=500, img_size=16, input_channels=3, channels=32, time_
             pbar.set_postfix(MSE=loss.item())
             logger.add_scalar("MSE", loss.item(), global_step=epoch * L + i)
 
-        sampled_images = diffusion.p_sample_loop(model, batch_size=images.shape[0])
+        sampled_images = diffusion.p_sample_loop_(model, batch_size=images.shape[0], ddim=True)
         save_images(images=sampled_images, path=os.path.join("adlcv-ex-4/results", experiment_name, f"{epoch}.jpg"),
                     show=show, title=f'Epoch {epoch}')
         torch.save(model.state_dict(), os.path.join("adlcv-ex-4/models", experiment_name, f"weights-{epoch}.pt"))
