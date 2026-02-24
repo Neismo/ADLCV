@@ -87,7 +87,7 @@ if __name__ == '__main__':
     model = UNet(device=device)
     model.eval()
     model.to(device)
-    model.load_state_dict(torch.load('models/weights-59epochs-full-dataset.pt', map_location=device)) # load the given model
+    model.load_state_dict(torch.load('adlcv-ex-4/models/weights-59epochs-full-dataset.pt', map_location=device)) # load the given model
     torch.manual_seed(seed)
 
     # TASK 3: Implement it in the diffusion class
