@@ -4,3 +4,7 @@ requirements.txt
 __pycache__/
 .venv/
 adlcv-ex-3/checkpoints/
+assets/
+runs/
+models/
+results/
